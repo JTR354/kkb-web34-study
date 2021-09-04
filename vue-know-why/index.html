@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue-know-why</title>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+</head>
+
+<body>
+  <h1>Sample for Vue</h1>
+  <div id="app">
+    {{ message }}
+    <p v-text="text"></p>
+    <p v-html="html"></p>
+    <h4>{{info}}</h4>
+    <input type="text" v-model="info" placeholder="edit me">
+    <button @click="clickHandle">button</button>
+    <h3>{{obj.aa}}</h3>
+    <h4>{{obj.bb}}</h4>
+  </div>
+  <script type="module">
+    import Vue from './index.js'
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!',
+        text: "it's a text",
+        html: "<span style='color:red;'>i'm a html</span>",
+        info: '1',
+        obj: { bb: 'bb' }
+      },
+      methods: {
+        clickHandle() {
+          console.log(this.message)
+          this.obj.bb = '64'
+          this.info = 'info'
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
