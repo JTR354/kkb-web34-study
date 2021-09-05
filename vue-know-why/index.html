@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vue-know-why</title>
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script src="kvue.js"></script>
 </head>
 
 <body>
@@ -16,13 +17,14 @@
     <p v-text="text"></p>
     <p v-html="html"></p>
     <h4>{{info}}</h4>
-    <input type="text" v-model="info" placeholder="edit me">
+    <input type="text" v-model="html" placeholder="edit me">
     <button @click="clickHandle">button</button>
     <h3>{{obj.aa}}</h3>
     <h4>{{obj.bb}}</h4>
+    <h2>{{arr}}</h2>
   </div>
   <script type="module">
-    import Vue from './index.js'
+    // import Vue from './index.js'
     var app = new Vue({
       el: '#app',
       data: {
@@ -30,13 +32,17 @@
         text: "it's a text",
         html: "<span style='color:red;'>i'm a html</span>",
         info: '1',
-        obj: { bb: 'bb' }
+        obj: { bb: 'bb' },
+        arr: [1, 2, 3]
       },
       methods: {
         clickHandle() {
           console.log(this.message)
+          this.text = 'text changed'
+          this.html = 'html changed'
           this.obj.bb = '64'
           this.info = 'info'
+          this.arr.push('arr', 99)
         }
       }
     })
