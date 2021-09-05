@@ -123,11 +123,7 @@ class Compile {
   moustache(node) {
     if (new RegExp('{{(.*)}}').test(node.textContent)) {
       const key = RegExp.$1.trim()
-      update(at(this.$vm, key))
-      this.watch(key, update)
-    }
-    function update(val) {
-      node.textContent = val || node.textContent
+      this.watch(key, val => node.textContent = val || node.textContent)
     }
   }
 
@@ -145,35 +141,23 @@ class Compile {
   }
 
   text(node, key) {
-    update(at(this.$vm, key))
-    this.watch(key, update)
-    function update(val) {
-      node.innerText = val
-    }
+    this.watch(key, val => node.innerText = val)
   }
 
   html(node, key) {
-    update(at(this.$vm, key))
-    this.watch(key, update)
-    function update(val) {
-      node.innerHTML = val
-    }
+    this.watch(key, val => node.innerHTML = val)
   }
 
   model(node, key) {
     node.addEventListener('input', e => {
-      const val = e.target.value
-      this.$vm[key] = val
+      this.$vm[key] = e.target.value
     })
-    update(at(this.$vm, key))
-    this.watch(key, update)
-    function update(val) {
-      node.value = val
-    }
+    this.watch(key, val => node.value = val)
   }
 
   watch(key, update) {
-    new Watcher(this.$vm, key, update)
+    // 初始化执行一次update
+    new Watcher(this.$vm, key, update).update()
   }
 }
 
@@ -197,6 +181,7 @@ class Watcher {
     Dep.subscriptionWatcher = this
     vm[key]
     Dep.subscriptionWatcher = null
+
   }
   update() {
     this.$updater.call(this.$vm, at(this.$vm, this.$key))
