@@ -24,9 +24,7 @@ export default {
       },
     };
   },
-  mounted() {
-    console.log(this.$children);
-  },
+  mounted() {},
 };
 </script>
 

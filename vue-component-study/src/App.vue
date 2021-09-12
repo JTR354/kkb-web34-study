@@ -2,19 +2,25 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-    <TableDemo />
+    <!-- <TableDemo /> -->
+    <!-- <Communication /> -->
+    <at-slot></at-slot>
   </div>
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
-import TableDemo from "./components/TableDemo.vue";
+// import TableDemo from "./components/TableDemo.vue";
+// import Communication from "./components/communication";
+import AtSlot from "./components/at-slot";
 
 export default {
   name: "App",
   components: {
     // HelloWorld,
-    TableDemo,
+    // TableDemo,
+    // Communication,
+    AtSlot,
   },
 };
 </script>
