@@ -4,7 +4,8 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     <!-- <TableDemo /> -->
     <!-- <Communication /> -->
-    <at-slot></at-slot>
+    <!-- <at-slot></at-slot> -->
+    <form-demo></form-demo>
   </div>
 </template>
 
@@ -12,15 +13,16 @@
 // import HelloWorld from "./components/HelloWorld.vue";
 // import TableDemo from "./components/TableDemo.vue";
 // import Communication from "./components/communication";
-import AtSlot from "./components/at-slot";
-
+// import AtSlot from "./components/at-slot";
+import FormDemo from "./components/FormDemo.vue";
 export default {
   name: "App",
   components: {
     // HelloWorld,
     // TableDemo,
     // Communication,
-    AtSlot,
+    // AtSlot,
+    FormDemo,
   },
 };
 </script>

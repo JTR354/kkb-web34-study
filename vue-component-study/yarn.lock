@@ -1376,7 +1376,7 @@
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
   version "1.2.1"
-  resolved "https://registry.npm.taobao.org/@vue/babel-helper-vue-jsx-merge-props/download/@vue/babel-helper-vue-jsx-merge-props-1.2.1.tgz?cache=0&sync_timestamp=1602851368340&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40vue%2Fbabel-helper-vue-jsx-merge-props%2Fdownload%2F%40vue%2Fbabel-helper-vue-jsx-merge-props-1.2.1.tgz#31624a7a505fb14da1d58023725a4c5f270e6a81"
+  resolved "https://registry.npm.taobao.org/@vue/babel-helper-vue-jsx-merge-props/download/@vue/babel-helper-vue-jsx-merge-props-1.2.1.tgz#31624a7a505fb14da1d58023725a4c5f270e6a81"
   integrity sha1-MWJKelBfsU2h1YAjclpMXycOaoE=
 
 "@vue/babel-helper-vue-transform-on@^1.0.2":
@@ -1435,7 +1435,7 @@
 
 "@vue/babel-preset-jsx@^1.2.4":
   version "1.2.4"
-  resolved "https://registry.nlark.com/@vue/babel-preset-jsx/download/@vue/babel-preset-jsx-1.2.4.tgz#92fea79db6f13b01e80d3a0099e2924bdcbe4e87"
+  resolved "https://registry.npm.taobao.org/@vue/babel-preset-jsx/download/@vue/babel-preset-jsx-1.2.4.tgz?cache=0&sync_timestamp=1603806770695&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40vue%2Fbabel-preset-jsx%2Fdownload%2F%40vue%2Fbabel-preset-jsx-1.2.4.tgz#92fea79db6f13b01e80d3a0099e2924bdcbe4e87"
   integrity sha1-kv6nnbbxOwHoDToAmeKSS9y+Toc=
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.2.1"
@@ -2141,6 +2141,11 @@ async-limiter@~1.0.0:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/async-limiter/download/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
   integrity sha1-3TeelPDbgxCwgpH51kwyCXZmF/0=
+
+async-validator@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.nlark.com/async-validator/download/async-validator-4.0.3.tgz#c8ecd6b28fc8e18b14be4ec7c704641f999d377d"
+  integrity sha1-yOzWso/I4YsUvk7HxwRkH5mdN30=
 
 async@^2.6.2:
   version "2.6.3"
