@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 // import { Button } from 'antd';
-import './App.css';
-import FormPage from './pages/FormPage'
+import "./App.css";
+// import FormPage from "./pages/FormPage";
+import ContextPage from "./pages/ContextPage";
 
 const App = () => (
   <div className="App">
-    <FormPage />
+    {/* <FormPage /> */}
+    <ContextPage />
   </div>
 );
 
