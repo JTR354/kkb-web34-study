@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ThemeContext, UserContext } from "./context";
 import ClassTypePage from "./ClassTypePage";
 import UseContextPage from "./UseContextPage";
