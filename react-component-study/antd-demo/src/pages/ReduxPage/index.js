@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createStore, applyMiddleware } from "./kredux";
 // import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import logger from "redux-logger";
+// import thunk from "redux-thunk";
+// import logger from "redux-logger";
 
 function counterReducer(state = 0, action) {
   switch (action.type) {
@@ -11,6 +11,27 @@ function counterReducer(state = 0, action) {
     default:
       return state;
   }
+}
+
+function logger({ getState }) {
+  return (next) => (action) => {
+    // console.log({ next });
+    console.log("-".repeat(20), "prev", getState());
+    console.log("action:", action);
+    const val = next(action); // 异步代码？？？同步代码？？？
+    console.log("-".repeat(20), "end", getState());
+    return val;
+  };
+}
+
+function thunk({ getState, dispatch }) {
+  return (next) => async (action) => {
+    if (typeof action === "function") {
+      console.log(action(dispatch, getState));
+      return action(dispatch, getState);
+    }
+    return next(action);
+  };
 }
 
 const store = createStore(counterReducer, applyMiddleware(thunk, logger));

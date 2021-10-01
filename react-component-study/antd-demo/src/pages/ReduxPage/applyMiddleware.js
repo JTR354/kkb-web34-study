@@ -7,7 +7,9 @@ export default function applyMiddleware(...middlerWare) {
       dispatch: (action) => dispatch(action),
     };
     const chain = middlerWare.map((middleWare) => middleWare(midApi));
+    console.log(chain[0].toString());
     dispatch = compose(...chain)(dispatch);
+    console.log({ dispatch });
     return { ...store, dispatch };
   };
 }
@@ -21,3 +23,20 @@ function compose(...fns) {
         a(b(...args))
   );
 }
+
+function f1(args) {
+  console.log(f1.name, args);
+  return args;
+}
+
+function f2(args) {
+  console.log(f2.name, args);
+  return args;
+}
+
+function f3(args) {
+  console.log(f3.name, args);
+  return args;
+}
+
+console.log(compose(f1, f2, f3));
