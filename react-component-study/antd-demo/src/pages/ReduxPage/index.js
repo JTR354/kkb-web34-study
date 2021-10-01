@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { createStore } from "./kredux";
+import { createStore, applyMiddleware } from "./kredux";
+// import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
 
 function counterReducer(state = 0, action) {
   switch (action.type) {
@@ -10,7 +13,7 @@ function counterReducer(state = 0, action) {
   }
 }
 
-const store = createStore(counterReducer);
+const store = createStore(counterReducer, applyMiddleware(thunk, logger));
 
 export default function ReduxPage() {
   const [, update] = useState(0);
@@ -35,6 +38,23 @@ export default function ReduxPage() {
       >
         add
       </button>
+      <button
+        onClick={() => {
+          store.dispatch(api);
+        }}
+      >
+        {" "}
+        addAsync
+      </button>
     </>
   );
+}
+
+async function api(dispatch) {
+  await sleep();
+  dispatch({ type: "ADD", payload: 1 });
+}
+
+function sleep() {
+  return new Promise((resolve) => setTimeout(resolve, 1000));
 }
