@@ -14,23 +14,26 @@ function counterReducer(state = 0, action) {
 }
 
 function logger({ getState }) {
-  return (next) => (action) => {
-    // console.log({ next });
+  return (next) => (action2) => {
+    console.log(logger.name, next);
     console.log("-".repeat(20), "prev", getState());
-    console.log("action:", action);
-    const val = next(action); // 异步代码？？？同步代码？？？
+    console.log("action:", action2);
+    next(action2); // 异步代码？？？同步代码？？？
     console.log("-".repeat(20), "end", getState());
-    return val;
+    // return val;
   };
 }
-
+// next 把下一步的控制权交给 对应的函数
 function thunk({ getState, dispatch }) {
-  return (next) => async (action) => {
-    if (typeof action === "function") {
-      console.log(action(dispatch, getState));
-      return action(dispatch, getState);
+  return (next) => async (action3) => {
+    console.log(thunk.name, next);
+    console.log(thunk.name, action3);
+    if (typeof action3 === "function") {
+      // console.log(action3(dispatch, getState));
+      action3(dispatch, getState);
+    } else {
+      next(action3);
     }
-    return next(action);
   };
 }
 

@@ -7,9 +7,9 @@ export default function applyMiddleware(...middlerWare) {
       dispatch: (action) => dispatch(action),
     };
     const chain = middlerWare.map((middleWare) => middleWare(midApi));
-    console.log(chain[0].toString());
+    // console.log(chain.toString());
     dispatch = compose(...chain)(dispatch);
-    console.log({ dispatch });
+    console.info(dispatch);
     return { ...store, dispatch };
   };
 }
@@ -19,8 +19,10 @@ function compose(...fns) {
   if (fns.length === 1) return fns[0];
   return fns.reduce(
     (a, b) =>
-      (...args) =>
-        a(b(...args))
+      function (...args) {
+        // console.log(111, b(...args));
+        return a(b(...args));
+      }
   );
 }
 
