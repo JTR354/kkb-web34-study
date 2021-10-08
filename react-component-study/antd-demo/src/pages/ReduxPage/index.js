@@ -3,6 +3,13 @@ import { createStore, applyMiddleware } from "./kredux";
 // import { createStore, applyMiddleware } from "redux";
 // import thunk from "redux-thunk";
 // import logger from "redux-logger";
+// import promise from "redux-promise";
+import isPromise from "is-promise";
+function promise() {
+  return (next) => (action) => {
+    return isPromise(action) ? action.then(next) : next(action);
+  };
+}
 
 function counterReducer(state = 0, action) {
   switch (action.type) {
@@ -30,14 +37,17 @@ function thunk({ getState, dispatch }) {
     console.log(thunk.name, action3);
     if (typeof action3 === "function") {
       // console.log(action3(dispatch, getState));
-      action3(dispatch, getState);
+      return action3(dispatch, getState);
     } else {
-      next(action3);
+      return next(action3);
     }
   };
 }
 
-const store = createStore(counterReducer, applyMiddleware(thunk, logger));
+const store = createStore(
+  counterReducer,
+  applyMiddleware(thunk, promise, logger)
+);
 
 export default function ReduxPage() {
   const [, update] = useState(0);
@@ -63,12 +73,20 @@ export default function ReduxPage() {
         add
       </button>
       <button
-        onClick={() => {
-          store.dispatch(api);
+        onClick={async () => {
+          await store.dispatch(api);
+          console.log(6);
         }}
       >
         {" "}
         addAsync
+      </button>
+      <button
+        onClick={() => {
+          store.dispatch(Promise.resolve({ type: "ADD", payload: -100 }));
+        }}
+      >
+        addPromise
       </button>
     </>
   );
