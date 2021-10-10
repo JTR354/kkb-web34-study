@@ -3,13 +3,14 @@ import React from "react";
 import "./App.css";
 // import FormPage from "./pages/FormPage";
 // import ContextPage from "./pages/ContextPage";
-import ReduxPage from "./pages/ReduxPage";
-
+// import ReduxPage from "./pages/ReduxPage";
+import RouterPage from "./pages/RouterPage";
 const App = () => (
   <div className="App">
     {/* <FormPage /> */}
     {/* <ContextPage /> */}
-    <ReduxPage />
+    {/* <ReduxPage /> */}
+    <RouterPage />
   </div>
 );
 
