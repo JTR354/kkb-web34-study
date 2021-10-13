@@ -1,17 +1,4 @@
-import { useEffect, useReducer, Component } from "react";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  useParams,
-  useHistory,
-  useLocation,
-  useRouteMatch,
-  Redirect,
-  Prompt,
-  withRouter,
-} from "react-router-dom";
+import { useEffect, useReducer, Component, useState } from "react";
 // import {
 //   BrowserRouter,
 //   Route,
@@ -21,11 +8,24 @@ import {
 //   useHistory,
 //   useLocation,
 //   useRouteMatch,
-//   withRouter,
 //   Redirect,
 //   Prompt,
-// } from "../../components/k-router-dom";
-
+//   withRouter,
+// } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Link,
+  useParams,
+  useHistory,
+  useLocation,
+  useRouteMatch,
+  withRouter,
+  Redirect,
+  Prompt,
+} from "../../components/k-router-dom";
+import PrivateRoute from "./PrivateRoute";
 class Production extends Component {
   constructor(props) {
     super(props);
@@ -104,14 +104,16 @@ export default function RouterPage() {
             render={() => <Page title="Render HomePage" />}
             children={() => <Page title="Children HomePage" count={count} />}
           >
-            {/* <Page title="HomePage" count={count} /> */}
-            <Redirect to="/login" />
+            <Page title="HomePage" count={count} />
           </Route>
-          <Route path="/user">
-            <Page title="UserPage" count={count} />
-          </Route>
+          <PrivateRoute
+            path="/user"
+            component={(props) => (
+              <Page {...props} title="UserPage" count={count} />
+            )}
+          />
           <Route path="/login">
-            <Page title="LoginPage" count={count} />
+            <Login />
           </Route>
           <Route path="/product/:id">
             <Product />
@@ -145,6 +147,26 @@ function Page(props) {
         {props.title} Page{props.count}
       </h2>
       <h3>detail-{params.id}</h3>
+    </>
+  );
+}
+
+function Login(props) {
+  const [name, setName] = useState("");
+  return (
+    <>
+      <h1>Login</h1>
+      <label>
+        <span>username</span>
+        <input value={name} onChange={(e) => setName(e.target.value)} />
+      </label>
+      <button
+        onClick={() => {
+          console.log(name);
+        }}
+      >
+        login
+      </button>
     </>
   );
 }
